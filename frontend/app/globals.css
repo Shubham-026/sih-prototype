@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
+@theme {
+  --color-surface-base: #0a0a0a;
+  --color-surface-panel: #151515;
+  --color-surface-elevated: #1f1f1f;
+  --color-surface-container: #201f1f;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #3a3939;
+
+  --color-foreground-primary: #f5f5f0;
+  --color-foreground-muted: #a3a3a0;
+
+  --color-primary: #f2ca50;
+  --color-primary-container: #d4af37;
+  --color-primary-fixed: #ffe088;
+  --color-primary-fixed-dim: #e9c349;
+  --color-gold-light: #e8c97a;
+  --color-gold-deep: #b8860b;
+
+  --color-secondary: #e2c375;
+  --color-secondary-container: #5b4601;
+  --color-secondary-fixed: #ffdf91;
+  --color-secondary-fixed-dim: #e2c375;
+
+  --color-status-success: #4caf7d;
+  --color-status-warning: #e0a72e;
+  --color-status-danger: #d64545;
+
+  --color-border-gold-glow: rgba(212, 175, 55, 0.2);
+  --color-halo-glow: rgba(212, 175, 55, 0.15);
+
+  --font-inter: var(--font-inter);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #f5f5f0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f5f0;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #d4af37;
+  selection-color: #0a0a0a;
+}
+
+::selection {
+  background: #d4af37;
+  color: #0a0a0a;
+}
+
+/* Custom Glass & Glow Utilities */
+.glass-panel {
+  background: rgba(21, 21, 21, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #e8c97a 0%, #d4af37 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.blueprint-grid {
+  background-image: radial-gradient(rgba(245, 245, 240, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 40s linear infinite;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 6s ease-in-out infinite;
 }
